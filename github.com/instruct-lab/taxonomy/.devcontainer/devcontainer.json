@@ -13,7 +13,10 @@
 	},
 
 	"mounts": [
-		// Mount gh-cli configuration & credentials
+		// Mount gh-cli configuration & credentials This doesn't actually work
+		// on Windows because the config files are stored in
+		// "${localEnv:USERPROFILE}/AppData/Roaming/GitHub CLI", and I'm not
+		// sure how to fix the line below.
 		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/gh,target=/home/vscode/.config/gh,type=bind,consistency=cached"
 	],
 
