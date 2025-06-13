@@ -9,8 +9,8 @@
 		"ghcr.io/devcontainers/features/docker-in-docker:2.12.2": {},
 		"ghcr.io/devcontainers/features/github-cli:1.0.14": {},
 		"ghcr.io/devcontainers/features/node:1.6.3": {},
-		"ghcr.io/devcontainers-extra/features/act:1.0.14": {},
-		"ghcr.io/devcontainers-extra/features/pre-commit:2.0.17": {}
+		"ghcr.io/devcontainers-extra/features/act:1.0.15": {},
+		"ghcr.io/devcontainers-extra/features/pre-commit:2.0.18": {}
 	},
 	"postCreateCommand": {
 		"Initialize pre-commit environment": "nohup sh -c 'pre-commit install -f --install-hooks &' > /dev/null"
