@@ -4,20 +4,17 @@
 	"name": "Go",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/go:1-1.22-bookworm",
-
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
 		"ghcr.io/devcontainers/features/docker-in-docker:2.12.2": {},
 		"ghcr.io/devcontainers/features/github-cli:1.0.14": {},
 		"ghcr.io/devcontainers/features/node:1.6.3": {},
-		"ghcr.io/devcontainers-contrib/features/act:1.0.14": {},
-		"ghcr.io/devcontainers-contrib/features/pre-commit:2.0.17": {}
+		"ghcr.io/devcontainers-extra/features/act:1.0.14": {},
+		"ghcr.io/devcontainers-extra/features/pre-commit:2.0.17": {}
 	},
-
 	"postCreateCommand": {
 		"Initialize pre-commit environment": "nohup sh -c 'pre-commit install -f --install-hooks &' > /dev/null"
 	},
-
 	"postAttachCommand": {
 		// Note: VSCode will fail to clone the dotfiles repository if there's a
 		// conflict in the known_hosts file, but the error message in very

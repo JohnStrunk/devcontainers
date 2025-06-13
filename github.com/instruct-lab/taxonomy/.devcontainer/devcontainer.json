@@ -4,14 +4,12 @@
 	"name": "Python",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/python:3.13-bullseye",
-
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
 		"ghcr.io/devcontainers/features/github-cli:1.0.14": {},
 		"ghcr.io/devcontainers/features/node:1.6.3": {},
-		"ghcr.io/devcontainers-contrib/features/pre-commit:2.0.17": {}
+		"ghcr.io/devcontainers-extra/features/pre-commit:2.0.17": {}
 	},
-
 	"mounts": [
 		// Mount gh-cli configuration & credentials This doesn't actually work
 		// on Windows because the config files are stored in
@@ -19,11 +17,9 @@
 		// sure how to fix the line below.
 		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/gh,target=/home/vscode/.config/gh,type=bind,consistency=cached"
 	],
-
 	"postCreateCommand": {
 		"Initialize pre-commit environment": "nohup sh -c 'pre-commit install -f --install-hooks &' > /dev/null"
 	},
-
 	"postAttachCommand": {
 		"Install instruct-lab cli": "pip install --upgrade --verbose git+ssh://git@github.com/instruct-lab/cli.git@stable"
 	}
