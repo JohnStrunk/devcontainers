@@ -1,62 +1,59 @@
 {
-  // JSON5 spec: https://json5.org/
-  // Renovate docs: https://docs.renovatebot.com/configuration-options/
-
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended",             // Use recommended settings
-    "helpers:pinGitHubActionDigests", // Pin GitHub action digests
-    ":enablePreCommit",               // Enable updates to pre-commit repos
-    ":gitSignOff"                     // Add Signed-off-by line to commit messages
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'config:recommended',
+    'helpers:pinGitHubActionDigests',
+    ':enablePreCommit',
+    ':gitSignOff',
   ],
-  // Files to ignore
-  // "ignorePaths": [
-  //   "docs/requirements.txt"
-  // ],
-  "labels": [
-    "dependencies"
+  labels: [
+    'dependencies',
   ],
-  "lockFileMaintenance": {"enabled": true},
-  "packageRules": [
+  lockFileMaintenance: {
+    enabled: true,
+  },
+  packageRules: [
     {
-      "description": "Update devcontainer images in a single PR",
-      "groupName": "devcontainer",
-      "matchFileNames": ["**/devcontainer.json"]
+      description: 'Update devcontainer images in a single PR',
+      groupName: 'devcontainer',
+      matchFileNames: [
+        '**/devcontainer.json',
+      ],
     },
     {
-      "description": "Update renovatebot/pre-commit-hooks weekly to decrease noise",
-      "matchPackageNames": ["renovatebot/pre-commit-hooks"],
-      "schedule": ["before 9am on monday"]
-    }
+      description: 'Update renovatebot/pre-commit-hooks weekly to decrease noise',
+      matchPackageNames: [
+        'renovatebot/pre-commit-hooks',
+      ],
+      schedule: [
+        'before 9am on monday',
+      ],
+    },
   ],
-  "regexManagers": [
+  customManagers: [
     {
-      "customType": "regex",
-      "description": "devcontainer base image",
-      "fileMatch": [
-        "/devcontainer.json$"
+      customType: 'regex',
+      description: 'devcontainer base image',
+      managerFilePatterns: [
+        '//devcontainer.json$/',
       ],
-      "matchStrings": [
-        "\"image\"\\s*:\\s*\"(?<depName>.*?):(?<currentValue>.*?)(@(?<currentDigest>sha256:[a-f0-9]+))?\""
+      matchStrings: [
+        '"image"\\s*:\\s*"(?<depName>.*?):(?<currentValue>.*?)(@(?<currentDigest>sha256:[a-f0-9]+))?"',
       ],
-      "datasourceTemplate": "docker"
+      datasourceTemplate: 'docker',
     },
     {
-      "customType": "regex",
-      "description": "devcontainer feature images",
-      "fileMatch": [
-        "/devcontainer.json$"
+      customType: 'regex',
+      description: 'devcontainer feature images',
+      managerFilePatterns: [
+        '//devcontainer.json$/',
       ],
-      "matchStrings": [
-        // devcontainer features don't support sha256 digests
-        "\"(?<depName>.*?):(?<currentValue>.*?)\"\\s*:\\s*"
+      matchStrings: [
+        '"(?<depName>.*?):(?<currentValue>.*?)"\\s*:\\s*',
       ],
-      "datasourceTemplate": "docker"
-    }
+      datasourceTemplate: 'docker',
+    },
   ],
-  // "schedule": [
-  //   "before 7am on Tuesday"  // Update weekly
-  // ],
-  "semanticCommits": "disabled",
-  "timezone": "America/New_York"
+  semanticCommits: 'disabled',
+  timezone: 'America/New_York',
 }
